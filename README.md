@@ -1,39 +1,15 @@
-# Heroku Buildpack for Node.js
+# Heroku Buildpack for Mean.io
 
-![nodejs](https://cloud.githubusercontent.com/assets/51578/13712672/efdf2a40-e792-11e5-82ef-492478cbc0dc.png)
 
-This is the official [Heroku buildpack](http://devcenter.heroku.com/articles/buildpacks) for Node.js apps.
-
-[![Build Status](https://travis-ci.org/heroku/heroku-buildpack-nodejs.svg)](https://travis-ci.org/heroku/heroku-buildpack-nodejs)
 
 ## Documentation
 
-For more information about using this Node.js buildpack on Heroku, see these Dev Center articles:
-
-- [Heroku Node.js Support](https://devcenter.heroku.com/articles/nodejs-support)
-- [Getting Started with Node.js on Heroku](https://devcenter.heroku.com/articles/nodejs)
 
 For more general information about buildpacks on Heroku:
 
 - [Buildpacks](https://devcenter.heroku.com/articles/buildpacks)
 - [Buildpack API](https://devcenter.heroku.com/articles/buildpack-api)
 
-## Locking to a buildpack version
-
-In production, you frequently want to lock all of your dependencies - including
-buildpacks - to a specific version. That way, you can regularly update and
-test them, upgrading with confidence.
-
-First, find the version you want from
-[the list of buildpack versions](https://github.com/heroku/heroku-buildpack-nodejs/releases).
-Then, specify that version with `buildpacks:set`:
-
-```
-heroku buildpacks:set https://github.com/heroku/heroku-buildpack-nodejs#v83 -a my-app
-```
-
-If you have trouble upgrading to the latest version of the buildpack, please
-open a support ticket at [help.heroku.com](https://help.heroku.com/) so we can assist.
 
 ### Chain Node with multiple buildpacks
 
@@ -45,8 +21,7 @@ into the `$PATH` for easy use in subsequent buildpacks.
 Having trouble? Dig it? Feature request?
 
 - [help.heroku.com](https://help.heroku.com/)
-- [@hunterloftis](http://twitter.com/hunterloftis)
-- [GitHub issues](https://github.com/heroku/heroku-buildpack-nodejs/issues)
+- [GitHub issues](https://github.com/mholtom/heroku-buildpack-meanio/issues)
 
 ## Hacking
 

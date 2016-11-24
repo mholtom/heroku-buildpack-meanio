@@ -35,7 +35,6 @@ source $BP_DIR/lib/environment.sh
 source $BP_DIR/lib/binaries.sh
 source $BP_DIR/lib/cache.sh
 source $BP_DIR/lib/dependencies.sh
-
 ### Handle errors
 
 handle_failure() {
@@ -69,6 +68,9 @@ create_env() {
 
 header "Creating runtime environment"
 create_env # can't pipe the whole thing because piping causes subshells, preventing exports
+
+
+
 list_node_config | output "$LOG_FILE"
 
 install_bins() {
@@ -157,6 +159,32 @@ summarize_build() {
   cd $BUILD_DIR
   (npm ls --depth=0 | tail -n +2 || true) 2>/dev/null
 }
+
+
+
+if [ -f $BUILD_DIR/bower.json ]; then
+  # Install bower locally
+
+  npm install bower
+  header "Found bower.json, running bower install"
+  $BUILD_DIR/node_modules/.bin/bower install
+else
+  header " No bower.json found"
+fi
+
+if [ -f $BUILD_DIR/gulpfile.js ]; then
+  npm install gulp
+  header "Found gulpfile, running gulp heroku:$NODE_ENV task"
+  $BUILD_DIR/node_modules/.bin/gulp heroku:$NODE_ENV
+else
+  header "No gulpfile found"
+fi
+
+#remove devDependencies after build
+echo "Removing devDependencies"
+
+npm prune --production 
+export NPM_CONFIG_PRODUCTION=true
 
 header "Build succeeded!"
 summarize_build | output "$LOG_FILE"
